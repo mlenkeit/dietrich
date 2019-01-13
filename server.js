@@ -4,6 +4,7 @@ const express = require('express')
 
 const auth = require('./lib/mw/auth')
 const localtunnel = require('./lib/router/localtunnel')
+const metadataHeaders = require('./lib/mw/metadata-headers')
 const tunnels = require('./lib/tunnels')
 
 module.exports = function (opts) {
@@ -16,6 +17,7 @@ module.exports = function (opts) {
     apiToken: opts.api_token,
     basicCredentials: opts.basic_auth
   }))
+  app.use(metadataHeaders())
 
   // status
   app.get('/', (req, res) => {
