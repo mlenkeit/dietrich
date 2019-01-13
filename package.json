@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "🔑 My Dietrich",
   "scripts": {
-    "fix": "standard '**/*.js' --fix --verbose | snazzy",
-    "lint": "standard  '**/*.js' --verbose | snazzy",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "fix": "standard bin/server '**/*.js' --fix --verbose | snazzy",
+    "lint": "standard bin/server '**/*.js' --verbose | snazzy",
+    "local": "API_TOKEN=123 BASIC_AUTH='user:pass' PORT=8080 nodemon --exec ./bin/server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./bin/server"
   },
   "repository": {
     "type": "git",
@@ -46,7 +48,16 @@
       "git add"
     ]
   },
-  "commitlint": { 
-    "extends": ["@commitlint/config-conventional"] 
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "dependencies": {
+    "express": "4.16.4",
+    "express-api-token-auth": "1.0.0",
+    "express-basic-auth": "1.1.6",
+    "uuid": "3.3.2",
+    "yargs": "12.0.5"
   }
 }
