@@ -8,8 +8,8 @@ module.exports = function (opts) {
   const app = express()
 
   app.use(auth({
-    api_token: opts.api_token,
-    basic_auth: opts.basic_auth
+    apiToken: opts.api_token,
+    basicCredentials: opts.basic_auth
   }))
 
   // status
