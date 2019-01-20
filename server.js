@@ -3,6 +3,7 @@
 const express = require('express')
 
 const auth = require('./lib/mw/auth')
+const fhem = require('./lib/router/fhem')
 const localtunnel = require('./lib/router/localtunnel')
 const metadataHeaders = require('./lib/mw/metadata-headers')
 const tunnels = require('./lib/tunnels')
@@ -25,7 +26,10 @@ module.exports = function (opts) {
   })
 
   // routers
-  app.get('/', localtunnel({
+  app.use(localtunnel({
+    tunnelHandler: tunnelHandler
+  }))
+  app.use(fhem({
     tunnelHandler: tunnelHandler
   }))
 
