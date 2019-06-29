@@ -6,6 +6,7 @@ const auth = require('./lib/mw/auth')
 const fhem = require('./lib/router/fhem')
 const localtunnel = require('./lib/router/localtunnel')
 const metadataHeaders = require('./lib/mw/metadata-headers')
+const piDab = require('./lib/router/pi-dab')
 const tunnels = require('./lib/tunnels')
 
 module.exports = function (opts) {
@@ -29,7 +30,10 @@ module.exports = function (opts) {
   app.use(localtunnel({
     tunnelHandler: tunnelHandler
   }))
-  app.use(fhem({
+  app.use('/fhem', fhem({
+    tunnelHandler: tunnelHandler
+  }))
+  app.use('/pi-dab', piDab({
     tunnelHandler: tunnelHandler
   }))
 
