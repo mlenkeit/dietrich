@@ -3,6 +3,7 @@
 const express = require('express')
 
 const auth = require('./lib/mw/auth')
+const bodyParser = require('body-parser')
 const fhem = require('./lib/router/fhem')
 const localtunnel = require('./lib/router/localtunnel')
 const metadataHeaders = require('./lib/mw/metadata-headers')
@@ -20,6 +21,7 @@ module.exports = function (opts) {
     basicCredentials: opts.basic_auth
   }))
   app.use(metadataHeaders())
+  app.use(bodyParser.json())
 
   // status
   app.get('/', (req, res) => {
